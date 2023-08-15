@@ -1,0 +1,4 @@
+#...append to the end of your configuration.yaml
+   #Can only have sensor: and template: once in the config, so adapt this to match how you organize your sensor and template definitions
+sensor: !include_dir_merge_list  sensors/
+template: !include_dir_merge_list templates/
