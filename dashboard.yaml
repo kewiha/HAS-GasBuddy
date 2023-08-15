@@ -1,0 +1,46 @@
+views:
+  - title: Home
+    cards:
+      - type: vertical-stack
+        cards:
+          - graph: line
+            type: sensor
+            entity: sensor.gasbuddy_low_local_price_trend_regular
+            detail: 1
+            hours_to_show: 168
+          - graph: line
+            type: sensor
+            entity: sensor.gasbuddy_avg_local_price_trend_regular
+            detail: 1
+            hours_to_show: 168
+        title: Trends
+      - type: entities
+        entities:
+          - type: attribute
+            name: 1
+            entity: sensor.gasbuddy_cheapest_station_1
+            attribute: price_vendor_and_fullAddress
+          - type: attribute
+            name: 2
+            entity: sensor.gasbuddy_cheapest_station_2
+            attribute: price_vendor_and_fullAddress
+          - type: attribute
+            name: 3
+            entity: sensor.gasbuddy_cheapest_station_3
+            attribute: price_vendor_and_fullAddress
+        title: Cheapest
+      - type: entities
+        entities:
+          - type: attribute
+            name: 1
+            entity: sensor.gasbuddy_closest_station_1
+            attribute: price_vendor_and_fullAddress
+          - type: attribute
+            name: 2
+            entity: sensor.gasbuddy_closest_station_2
+            attribute: price_vendor_and_fullAddress
+          - type: attribute
+            name: 3
+            entity: sensor.gasbuddy_closest_station_3
+            attribute: price_vendor_and_fullAddress
+        title: Closest
