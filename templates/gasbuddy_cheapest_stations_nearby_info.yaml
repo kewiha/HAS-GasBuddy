@@ -1,0 +1,66 @@
+- trigger:
+    - platform: state
+      entity_id: sensor.gasbuddy_stations_nearby_info
+    - platform: time_pattern
+      minutes: '*'
+        #Set to '*' when debugging and immediate updates
+        #Set to any integer between 0 and 59 once everything is working
+  sensor:
+    - unique_id: gasbuddy_cheapest_stations_nearby_info.yaml
+      name: "GasBuddy Cheapest Stations Nearby Info"
+      icon: mdi:gas-station
+      state: "{{ range(1, 10240) | random }}"
+        #The point of this sensor is its attributes. Using a random dummy value
+      attributes:
+        stations: >
+          {% set prices = namespace(price=[], station_index=[]) %}
+          {% set prices_sorted = namespace(price=[], station_index=[]) %}
+          {% set stations = state_attr('sensor.gasbuddy_stations_nearby_info', 'stations') %}
+          {% set zipped = namespace(data=[]) %}
+          {% if stations != None and stations.results != None %}
+            {% for result in stations.results %}
+              {% if prices.station_index == [] %}
+                {% set prices.station_index = [loop.index0] %}
+              {% else %}
+                {% set prices.station_index = prices.station_index + [loop.index0] %}
+              {% endif %}
+              {% set lowprice = 999999999 %}
+              {% if result.prices.0.cash != None and result.prices.0.cash.price > 0 %}
+                {% set cashprice=result.prices.0.cash.price %}
+                {% set lowprice=cashprice %}
+              {% endif %}
+              {% if result.prices.0.credit != None and result.prices.0.credit.price > 0 %}
+                {% set creditprice=result.prices.0.credit.price %}
+                {% set lowprice=creditprice %}
+              {% endif %}
+              {% if result.prices.0.cash != None and result.prices.0.cash.price > 0 and result.prices.0.credit != None and result.prices.0.credit.price > 0 %}
+                 {% set lowprice=min(creditprice, cashprice) %}
+              {% endif %}
+              {% if prices.price == [] %}
+                {% set prices.price = [lowprice] %}
+              {% else %}
+                {% set prices.price = prices.price + [lowprice] %}
+              {% endif %}
+            {% endfor %}
+            {% set x_price = prices.price %}
+            {% set y_station_index = prices.station_index %}
+
+            {% for x in x_price %}
+              {% set zipped.data = zipped.data + [{"x": x, "y": y_station_index [loop.index0]}] %}
+            {% endfor %}
+            {% for entry in zipped.data|sort(attribute='x') %}
+              {% set prices_sorted.price = prices_sorted.price + [entry.x] %}
+              {% set prices_sorted.station_index = prices_sorted.station_index + [entry.y] %}
+            {% endfor %}
+
+            {% set stations_results_sorted = namespace(results=[]) %}
+            {% for result in stations.results %}
+              {% set stations_results_sorted.results = stations_results_sorted.results + [stations.results[prices_sorted.station_index[loop.index0]]] %}
+            {% endfor %}
+
+            {% set stations_sorted = {'count': stations.count, 'cursor': stations.cursor, 'results': stations_results_sorted.results } %}
+
+          {% endif %}
+          {{ stations_sorted | default(stations) }}
+        trends: >
+          {{ state_attr('sensor.gasbuddy_stations_nearby_info', 'trends') | default(0) }}
