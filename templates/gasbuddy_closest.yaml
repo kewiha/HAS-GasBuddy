@@ -201,3 +201,133 @@
               {{ "$" + this.state | default (0) | string + " " + this.attributes.vendor | default("") + " (" + this.attributes.fullAddress | default("") + ")" }}
             {% endif %}
           {% endif %}
+    - unique_id: gasbuddy_closest_station_4
+      name: GasBuddy Closest Station (4)
+      icon: mdi:gas-station
+      unit_of_measurement: "YOURCURRENCY"
+      state_class: measurement
+      state: >
+        {% if states('sensor.gasbuddy_stations_nearby_info') != None %}
+          {% if state_attr('sensor.gasbuddy_stations_nearby_info', 'stations') != None %}
+            {{ state_attr('sensor.gasbuddy_stations_nearby_info', 'stations').results.3.prices.0.credit.price }}
+          {% endif %}
+        {% endif %}
+      attributes:
+        fullAddress: >
+          {% set full_address="" %}
+          {% if states('sensor.gasbuddy_stations_nearby_info') != None %}
+            {% if state_attr('sensor.gasbuddy_stations_nearby_info', 'stations') != None %}
+              {% if state_attr('sensor.gasbuddy_stations_nearby_info', 'stations').results.3.address.line1 != "" %}
+                {% if full_address != "" %}
+                  {% set full_address=full_address + ", " + state_attr('sensor.gasbuddy_stations_nearby_info', 'stations').results.3.address.line1 %}
+                {% else %}
+                  {% set full_address=state_attr('sensor.gasbuddy_stations_nearby_info', 'stations').results.3.address.line1 %}
+                {% endif %}
+              {% endif %}
+              {% if state_attr('sensor.gasbuddy_stations_nearby_info', 'stations').results.3.address.line2 != "" %}
+                {% if full_address != "" %}
+                  {% set full_address=full_address + ", " + state_attr('sensor.gasbuddy_stations_nearby_info', 'stations').results.3.address.line2 %}
+                {% else %}
+                  {% set full_address=state_attr('sensor.gasbuddy_stations_nearby_info', 'stations').results.3.address.line2 %}
+                {% endif %}
+              {% endif %}
+              {% if state_attr('sensor.gasbuddy_stations_nearby_info', 'stations').results.3.address.locality != "" %}
+                {% if full_address != "" %}
+                  {% set full_address=full_address + ", " + state_attr('sensor.gasbuddy_stations_nearby_info', 'stations').results.3.address.locality %}
+                {% else %}
+                  {% set full_address=state_attr('sensor.gasbuddy_stations_nearby_info', 'stations').results.3.address.locality %}
+                {% endif %}
+              {% endif %}
+              {% if state_attr('sensor.gasbuddy_stations_nearby_info', 'stations').results.3.address.region != "" %}
+                {% if full_address != "" %}
+                  {% set full_address=full_address + ", " + state_attr('sensor.gasbuddy_stations_nearby_info', 'stations').results.3.address.region %}
+                {% else %}
+                  {% set full_address=state_attr('sensor.gasbuddy_stations_nearby_info', 'stations').results.3.address.region %}
+                {% endif %}
+              {% endif %}
+            {% endif %}
+          {% endif %}
+          {{ full_address }}
+        vendor: >
+          {% if states('sensor.gasbuddy_stations_nearby_info') != None %}
+            {% if state_attr('sensor.gasbuddy_stations_nearby_info', 'stations') != None %}
+              {{ state_attr('sensor.gasbuddy_stations_nearby_info', 'stations').results.2.name }}
+            {% endif %}
+          {% endif %}
+        vendor_and_fullAddress: >
+          {% if states('sensor.gasbuddy_stations_nearby_info') != None %}
+            {% if state_attr('sensor.gasbuddy_stations_nearby_info', 'stations') != None %}
+              {{ this.attributes.vendor | default("") + " (" + this.attributes.fullAddress | default("") + ")" }}
+            {% endif %}
+          {% endif %}
+        price_vendor_and_fullAddress: >
+          {% if states('sensor.gasbuddy_stations_nearby_info') != None %}
+            {% if state_attr('sensor.gasbuddy_stations_nearby_info', 'stations') != None %}
+              {{ "$" + this.state | default (0) | string + " " + this.attributes.vendor | default("") + " (" + this.attributes.fullAddress | default("") + ")" }}
+            {% endif %}
+          {% endif %}
+    - unique_id: gasbuddy_closest_station_5
+      name: GasBuddy Closest Station (5)
+      icon: mdi:gas-station
+      unit_of_measurement: "YOURCURRENCY"
+      state_class: measurement
+      state: >
+        {% if states('sensor.gasbuddy_stations_nearby_info') != None %}
+          {% if state_attr('sensor.gasbuddy_stations_nearby_info', 'stations') != None %}
+            {{ state_attr('sensor.gasbuddy_stations_nearby_info', 'stations').results.4.prices.0.credit.price }}
+          {% endif %}
+        {% endif %}
+      attributes:
+        fullAddress: >
+          {% set full_address="" %}
+          {% if states('sensor.gasbuddy_stations_nearby_info') != None %}
+            {% if state_attr('sensor.gasbuddy_stations_nearby_info', 'stations') != None %}
+              {% if state_attr('sensor.gasbuddy_stations_nearby_info', 'stations').results.4.address.line1 != "" %}
+                {% if full_address != "" %}
+                  {% set full_address=full_address + ", " + state_attr('sensor.gasbuddy_stations_nearby_info', 'stations').results.4.address.line1 %}
+                {% else %}
+                  {% set full_address=state_attr('sensor.gasbuddy_stations_nearby_info', 'stations').results.4.address.line1 %}
+                {% endif %}
+              {% endif %}
+              {% if state_attr('sensor.gasbuddy_stations_nearby_info', 'stations').results.4.address.line2 != "" %}
+                {% if full_address != "" %}
+                  {% set full_address=full_address + ", " + state_attr('sensor.gasbuddy_stations_nearby_info', 'stations').results.4.address.line2 %}
+                {% else %}
+                  {% set full_address=state_attr('sensor.gasbuddy_stations_nearby_info', 'stations').results.4.address.line2 %}
+                {% endif %}
+              {% endif %}
+              {% if state_attr('sensor.gasbuddy_stations_nearby_info', 'stations').results.4.address.locality != "" %}
+                {% if full_address != "" %}
+                  {% set full_address=full_address + ", " + state_attr('sensor.gasbuddy_stations_nearby_info', 'stations').results.4.address.locality %}
+                {% else %}
+                  {% set full_address=state_attr('sensor.gasbuddy_stations_nearby_info', 'stations').results.4.address.locality %}
+                {% endif %}
+              {% endif %}
+              {% if state_attr('sensor.gasbuddy_stations_nearby_info', 'stations').results.4.address.region != "" %}
+                {% if full_address != "" %}
+                  {% set full_address=full_address + ", " + state_attr('sensor.gasbuddy_stations_nearby_info', 'stations').results.4.address.region %}
+                {% else %}
+                  {% set full_address=state_attr('sensor.gasbuddy_stations_nearby_info', 'stations').results.4.address.region %}
+                {% endif %}
+              {% endif %}
+            {% endif %}
+          {% endif %}
+          {{ full_address }}
+        vendor: >
+          {% if states('sensor.gasbuddy_stations_nearby_info') != None %}
+            {% if state_attr('sensor.gasbuddy_stations_nearby_info', 'stations') != None %}
+              {{ state_attr('sensor.gasbuddy_stations_nearby_info', 'stations').results.2.name }}
+            {% endif %}
+          {% endif %}
+        vendor_and_fullAddress: >
+          {% if states('sensor.gasbuddy_stations_nearby_info') != None %}
+            {% if state_attr('sensor.gasbuddy_stations_nearby_info', 'stations') != None %}
+              {{ this.attributes.vendor | default("") + " (" + this.attributes.fullAddress | default("") + ")" }}
+            {% endif %}
+          {% endif %}
+        price_vendor_and_fullAddress: >
+          {% if states('sensor.gasbuddy_stations_nearby_info') != None %}
+            {% if state_attr('sensor.gasbuddy_stations_nearby_info', 'stations') != None %}
+              {{ "$" + this.state | default (0) | string + " " + this.attributes.vendor | default("") + " (" + this.attributes.fullAddress | default("") + ")" }}
+            {% endif %}
+          {% endif %}
