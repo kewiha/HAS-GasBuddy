@@ -24,15 +24,6 @@
               {{ state_attr('sensor.gasbuddy_stations_nearby_info', 'trends').0.areaName }}
             {% endif %}
           {% endif %}
-
-- trigger:
-    - platform: state
-      entity_id: sensor.gasbuddy_stations_nearby
-    - platform: time_pattern
-      minutes: '*'
-        #Set to '*' when debugging and immediate updates
-        #Set to any integer between 0 and 59 once everything is working
-  sensor:
     - unique_id: gasbuddy_trends_low
       name: GasBuddy Daily Low Price (Regular)
       icon: mdi:gas-station
