@@ -251,7 +251,7 @@
         vendor: >
           {% if states('sensor.gasbuddy_stations_nearby_info') != None %}
             {% if state_attr('sensor.gasbuddy_stations_nearby_info', 'stations') != None %}
-              {{ state_attr('sensor.gasbuddy_stations_nearby_info', 'stations').results.2.name }}
+              {{ state_attr('sensor.gasbuddy_stations_nearby_info', 'stations').results.3.name }}
             {% endif %}
           {% endif %}
         vendor_and_fullAddress: >
@@ -316,7 +316,7 @@
         vendor: >
           {% if states('sensor.gasbuddy_stations_nearby_info') != None %}
             {% if state_attr('sensor.gasbuddy_stations_nearby_info', 'stations') != None %}
-              {{ state_attr('sensor.gasbuddy_stations_nearby_info', 'stations').results.2.name }}
+              {{ state_attr('sensor.gasbuddy_stations_nearby_info', 'stations').results.4.name }}
             {% endif %}
           {% endif %}
         vendor_and_fullAddress: >
