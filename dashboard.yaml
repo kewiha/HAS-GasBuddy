@@ -14,49 +14,53 @@ views:
             detail: 1
             hours_to_show: 168
         title: Trends
-      - type: entities
-        entities:
-          - type: attribute
-            name: 1
-            entity: sensor.gasbuddy_cheapest_station_1
-            attribute: price_vendor_and_fullAddress
-          - type: attribute
-            name: 2
-            entity: sensor.gasbuddy_cheapest_station_2
-            attribute: price_vendor_and_fullAddress
-          - type: attribute
-            name: 3
-            entity: sensor.gasbuddy_cheapest_station_3
-            attribute: price_vendor_and_fullAddress
-          - type: attribute
-            name: 4
-            entity: sensor.gasbuddy_cheapest_station_4
-            attribute: price_vendor_and_fullAddress
-          - type: attribute
-            name: 5
-            entity: sensor.gasbuddy_cheapest_station_5
-            attribute: price_vendor_and_fullAddress
+      - type: vertical-stack
+        cards:
+          - type: entities
+            entities:
+              - type: attribute
+                name: 1
+                entity: sensor.gasbuddy_cheapest_station_1
+                attribute: price_vendor_and_fullAddress
+              - type: attribute
+                name: 2
+                entity: sensor.gasbuddy_cheapest_station_2
+                attribute: price_vendor_and_fullAddress
+              - type: attribute
+                name: 3
+                entity: sensor.gasbuddy_cheapest_station_3
+                attribute: price_vendor_and_fullAddress
+              - type: attribute
+                name: 4
+                entity: sensor.gasbuddy_cheapest_station_4
+                attribute: price_vendor_and_fullAddress
+              - type: attribute
+                name: 5
+                entity: sensor.gasbuddy_cheapest_station_5
+                attribute: price_vendor_and_fullAddress
         title: Cheapest
-      - type: entities
-        entities:
-          - type: attribute
-            name: 1
-            entity: sensor.gasbuddy_closest_station_1
-            attribute: price_vendor_and_fullAddress
-          - type: attribute
-            name: 2
-            entity: sensor.gasbuddy_closest_station_2
-            attribute: price_vendor_and_fullAddress
-          - type: attribute
-            name: 3
-            entity: sensor.gasbuddy_closest_station_3
-            attribute: price_vendor_and_fullAddress
-          - type: attribute
-            name: 4
-            entity: sensor.gasbuddy_closest_station_4
-            attribute: price_vendor_and_fullAddress
-          - type: attribute
-            name: 5
-            entity: sensor.gasbuddy_closest_station_5
-            attribute: price_vendor_and_fullAddress
+      - type: vertical-stack
+        cards:
+          - type: entities
+            entities:
+              - type: attribute
+                name: 1
+                entity: sensor.gasbuddy_closest_station_1
+                attribute: price_vendor_and_fullAddress
+              - type: attribute
+                name: 2
+                entity: sensor.gasbuddy_closest_station_2
+                attribute: price_vendor_and_fullAddress
+              - type: attribute
+                name: 3
+                entity: sensor.gasbuddy_closest_station_3
+                attribute: price_vendor_and_fullAddress
+              - type: attribute
+                name: 4
+                entity: sensor.gasbuddy_closest_station_4
+                attribute: price_vendor_and_fullAddress
+              - type: attribute
+                name: 5
+                entity: sensor.gasbuddy_closest_station_5
+                attribute: price_vendor_and_fullAddress
         title: Closest
