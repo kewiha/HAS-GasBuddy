@@ -5,12 +5,12 @@ views:
         cards:
           - graph: line
             type: sensor
-            entity: sensor.gasbuddy_low_local_price_trend_regular
+            entity: sensor.gasbuddy_daily_low_price_regular
             detail: 1
             hours_to_show: 168
           - graph: line
             type: sensor
-            entity: sensor.gasbuddy_avg_local_price_trend_regular
+            entity: sensor.gasbuddy_daily_avg_price_regular
             detail: 1
             hours_to_show: 168
         title: Trends
