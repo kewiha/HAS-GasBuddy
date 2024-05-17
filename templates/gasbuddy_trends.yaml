@@ -14,15 +14,23 @@
       state: >
         {% if states('sensor.gasbuddy_stations_nearby_info') != None %}
           {% if state_attr('sensor.gasbuddy_stations_nearby_info', 'trends') != None %}
-            {{ state_attr('sensor.gasbuddy_stations_nearby_info', 'trends').0.today }}
+            {{ state_attr('sensor.gasbuddy_stations_nearby_info', 'trends').0.today | None }}
+          {% else %}
+            {{ None }}
           {% endif %}
+        {% else %}
+          {{ None }}
         {% endif %}
       attributes:
         areaName: >
           {% if states('sensor.gasbuddy_stations_nearby_info') != None %}
             {% if state_attr('sensor.gasbuddy_stations_nearby_info', 'trends') != None %}
-              {{ state_attr('sensor.gasbuddy_stations_nearby_info', 'trends').0.areaName }}
+              {{ state_attr('sensor.gasbuddy_stations_nearby_info', 'trends').0.areaName | None }}
+            {% else %}
+              {{ None }}
             {% endif %}
+          {% else %}
+            {{ None }}
           {% endif %}
     - unique_id: gasbuddy_trends_low
       name: GasBuddy Daily Low Price (Regular)
@@ -32,13 +40,19 @@
       state: >
         {% if states('sensor.gasbuddy_stations_nearby_info') != None %}
           {% if state_attr('sensor.gasbuddy_stations_nearby_info', 'trends') != None %}
-            {{ state_attr('sensor.gasbuddy_stations_nearby_info', 'trends').0.todayLow }}
+            {{ state_attr('sensor.gasbuddy_stations_nearby_info', 'trends').0.todayLow | None }}
+          {% else %}
+            {{ None }}
           {% endif %}
         {% endif %}
       attributes:
         areaName: >
           {% if states('sensor.gasbuddy_stations_nearby_info') != None %}
             {% if state_attr('sensor.gasbuddy_stations_nearby_info', 'trends') != None %}
-              {{ state_attr('sensor.gasbuddy_stations_nearby_info', 'trends').0.areaName }}
+              {{ state_attr('sensor.gasbuddy_stations_nearby_info', 'trends').0.areaName | None }}
+            {% else %}
+              {{ None }}
             {% endif %}
+          {% else %}
+            {{ None }}
           {% endif %}
