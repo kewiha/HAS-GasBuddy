@@ -3,30 +3,42 @@
       entity_id: sensor.gasbuddy_stations_nearby_info
     - platform: time_pattern
       minutes: '*'
-        #Set to '*' when debugging for immediate updates
-        #Set to any integer between 0 and 59 once everything is working
   sensor:
     - unique_id: gasbuddy_trends_avg
       name: GasBuddy Daily Avg Price (Regular)
       icon: mdi:gas-station
-      unit_of_measurement: "YOURCURRENCY"
       state_class: measurement
       state: >
-        {{ state_attr('sensor.gasbuddy_stations_nearby_info', 'trends').0.today }}
+        {% if states('sensor.gasbuddy_stations_nearby_info') != None %}
+          {% if state_attr('sensor.gasbuddy_stations_nearby_info', 'trends') != None %}
+            {{ state_attr('sensor.gasbuddy_stations_nearby_info', 'trends').0.today }}
+          {% endif %}
+        {% endif %}
       availability: >
         {{ states('sensor.gasbuddy_stations_nearby_info') not in ['unknown','unavailable','none'] }}
       attributes:
         areaName: >
-          {{ state_attr('sensor.gasbuddy_stations_nearby_info', 'trends').0.areaName }}
+          {% if states('sensor.gasbuddy_stations_nearby_info') != None %}
+            {% if state_attr('sensor.gasbuddy_stations_nearby_info', 'trends') != None %}
+              {{ state_attr('sensor.gasbuddy_stations_nearby_info', 'trends').0.areaName }}
+            {% endif %}
+          {% endif %}
     - unique_id: gasbuddy_trends_low
       name: GasBuddy Daily Low Price (Regular)
       icon: mdi:gas-station
-      unit_of_measurement: "YOURCURRENCY"
       state_class: measurement
       state: >
-        {{ state_attr('sensor.gasbuddy_stations_nearby_info', 'trends').0.todayLow }}
+        {% if states('sensor.gasbuddy_stations_nearby_info') != None %}
+          {% if state_attr('sensor.gasbuddy_stations_nearby_info', 'trends') != None %}
+            {{ state_attr('sensor.gasbuddy_stations_nearby_info', 'trends').0.todayLow }}
+          {% endif %}
+        {% endif %}
       availability: >
         {{ states('sensor.gasbuddy_stations_nearby_info') not in ['unknown','unavailable','none'] }}
       attributes:
         areaName: >
-          {{ state_attr('sensor.gasbuddy_stations_nearby_info', 'trends').0.areaName }}
+          {% if states('sensor.gasbuddy_stations_nearby_info') != None %}
+            {% if state_attr('sensor.gasbuddy_stations_nearby_info', 'trends') != None %}
+              {{ state_attr('sensor.gasbuddy_stations_nearby_info', 'trends').0.areaName }}
+            {% endif %}
+          {% endif %}
