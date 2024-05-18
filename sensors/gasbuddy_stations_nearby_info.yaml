@@ -1,7 +1,7 @@
 - platform: rest
   name: "GasBuddy Stations Nearby Info"
   icon: mdi:gas-station
-  scan_interval: 3600
+  scan_interval: 900
   resource: https://www.gasbuddy.com/graphql
   method: POST
   headers:
